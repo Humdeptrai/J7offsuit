@@ -1,0 +1,16 @@
+{
+  "name": "J7offsuit",
+  "short_name": "J7offsuit",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#080605",
+  "theme_color": "#080605",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
