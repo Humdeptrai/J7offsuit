@@ -7,23 +7,32 @@ import GamePage from './pages/GamePage';
 import SharedGamePage from './pages/SharedGamePage';
 import './styles.css';
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<App />}>
-          <Route index element={<HomePage />} />
-          <Route path="games/:gameId" element={<GamePage />} />
-          <Route path="share/:token" element={<SharedGamePage />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
-  </React.StrictMode>,
-);
-
-
-if ('serviceWorker' in navigator && import.meta.env.PROD) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js').catch(() => undefined);
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.getRegistrations().then((registrations) => {
+    registrations.forEach((registration) => {
+      registration.unregister();
+    });
   });
 }
+
+if ('caches' in window) {
+  caches.keys().then((keys) => {
+    keys.forEach((key) => {
+      caches.delete(key);
+    });
+  });
+}
+
+ReactDOM.createRoot(document.getElementById('root')!).render(
+    <React.StrictMode>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<App />}>
+            <Route index element={<HomePage />} />
+            <Route path="games/:gameId" element={<GamePage />} />
+            <Route path="share/:token" element={<SharedGamePage />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </React.StrictMode>,
+);
