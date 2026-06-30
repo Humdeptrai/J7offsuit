@@ -142,8 +142,8 @@ export default function HomePage() {
               <div className="delete-confirm-dialog">
                 <p>Bạn có muốn xoá game <strong>{deletingGame.name}</strong> không?</p>
                 <div className="delete-confirm-actions">
-                  <button className="secondary" onClick={() => setDeletingGame(null)}>Không</button>
                   <button className="danger" onClick={confirmDelete}>Có</button>
+                  <button className="secondary" onClick={() => setDeletingGame(null)}>Không</button>
                 </div>
               </div>
             </div>

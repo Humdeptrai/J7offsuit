@@ -114,8 +114,8 @@ export default function GamePage() {
               <div className="delete-confirm-dialog">
                 <p>Bạn có muốn xoá người chơi <strong>{deletingPlayer.name}</strong> không?</p>
                 <div className="delete-confirm-actions">
-                  <button className="secondary" onClick={() => setDeletingPlayer(null)}>Không</button>
                   <button className="danger" onClick={confirmDeletePlayer}>Có</button>
+                  <button className="secondary" onClick={() => setDeletingPlayer(null)}>Không</button>
                 </div>
               </div>
             </div>

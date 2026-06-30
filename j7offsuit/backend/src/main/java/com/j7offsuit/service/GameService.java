@@ -38,7 +38,12 @@ public class GameService {
     @Transactional
     public GameResponse createGame(CreateGameRequest request) {
         Game game = new Game();
-        game.setName(cleanName(request.name()));
+        String requestName = request.name();
+        if (requestName == null || requestName.trim().isEmpty()) {
+            game.setName("Untitled Game");
+        } else {
+            game.setName(cleanName(requestName));
+        }
         game.setChipUnit(request.chipUnit() == null ? 1000 : request.chipUnit());
         game.setMoneyPerUnit(request.moneyPerUnit() == null ? 500000 : request.moneyPerUnit());
         assignUniqueTokens(game);

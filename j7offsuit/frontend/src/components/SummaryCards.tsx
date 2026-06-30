@@ -2,7 +2,7 @@ import type { Game } from '../types';
 import { formatChip, formatMoney, getDiffLabel, signed } from '../format';
 
 export default function SummaryCards({ game }: { game: Game }) {
-  const diffClass = game.differenceChip === 0 ? 'ok' : game.differenceChip > 0 ? 'positive' : 'negative';
+  const diffClass = game.differenceChip === 0 ? 'ok' : game.differenceChip > 0 ? 'negative' : 'positive';
 
   return (
     <section className="summary-grid">
