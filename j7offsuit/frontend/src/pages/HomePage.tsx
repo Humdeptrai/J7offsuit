@@ -29,14 +29,22 @@ export default function HomePage() {
   const [deletingGame, setDeletingGame] = useState<OwnedGameRef | null>(null);
 
   async function createGame() {
-    if (!name.trim()) {
-      alert('Tên game không được để trống');
-      return;
-    }
     setCreating(true);
+
     try {
-      const game = await api.createGame({ name: name.trim(), chipUnit: 1000, moneyPerUnit: 500000 });
-      const ref = { id: game.id, name: game.name, ownerToken: game.ownerToken!, updatedAt: game.updatedAt };
+      const game = await api.createGame({
+        name: name.trim() || undefined,
+        chipUnit: 1000,
+        moneyPerUnit: 500000
+      });
+
+      const ref = {
+        id: game.id,
+        name: game.name,
+        ownerToken: game.ownerToken!,
+        updatedAt: game.updatedAt
+      };
+
       saveOwnedGame(ref);
       setGames(getOwnedGames());
       navigate(`/games/${game.id}`);

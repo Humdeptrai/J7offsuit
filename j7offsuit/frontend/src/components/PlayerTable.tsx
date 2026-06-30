@@ -56,7 +56,7 @@ export default function PlayerTable({ game, onEdit, onDelete }: Props) {
 
                 <td
                   data-label="Lãi/Lỗ"
-                  className={player.profitLossChip > 0 ? 'negative-text' : player.profitLossChip < 0 ? 'positive-text' : ''}
+                  className={player.profitLossChip > 0 ? 'positive-text' : player.profitLossChip < 0 ? 'negative-text' : ''}
                 >
                   <strong>{signed(player.profitLossChip, formatChip)}</strong>
                   <small>{signed(player.profitLossMoney, formatMoney)}</small>
@@ -84,7 +84,7 @@ export default function PlayerTable({ game, onEdit, onDelete }: Props) {
       <div className="player-board-cards">
         <div className="player-cards-scroll">
           {game.players.map((player) => {
-            const plClass = player.profitLossChip > 0 ? 'negative-text' : player.profitLossChip < 0 ? 'positive-text' : '';
+            const plClass = player.profitLossChip > 0 ? 'positive-text' : player.profitLossChip < 0 ? 'negative-text' : '';
 
             return (
               <div

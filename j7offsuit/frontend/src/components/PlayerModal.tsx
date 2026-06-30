@@ -33,6 +33,7 @@ export default function PlayerModal({ player, chipUnit, moneyPerUnit, onSave, on
   const [cashOutChip, setCashOutChip] = useState(player && player.cashOutChip > 0 ? String(player.cashOutChip) : '');
   const [confirmClose, setConfirmClose] = useState(false);
   const [saving, setSaving] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const current = useMemo(() => {
     const buy = toNumber(buyInChip);
@@ -54,7 +55,7 @@ export default function PlayerModal({ player, chipUnit, moneyPerUnit, onSave, on
 
   async function handleSave() {
     if (!name.trim()) {
-      alert('Tên người chơi không được để trống');
+      setErrorMessage('Tên người chơi không được để trống');
       return;
     }
     setSaving(true);
@@ -124,7 +125,17 @@ export default function PlayerModal({ player, chipUnit, moneyPerUnit, onSave, on
           </div>
         </div>
 
-        {/* Dialog xác nhận đóng – giống hệt giao diện xoá người chơi */}
+        {errorMessage ? (
+            <div className="modal-backdrop delete-confirm-backdrop">
+              <div className="delete-confirm-dialog">
+                <p>{errorMessage}</p>
+                <div className="delete-confirm-actions">
+                  <button className="primary" onClick={() => setErrorMessage('')}>OK</button>
+                </div>
+              </div>
+            </div>
+        ) : null}
+
         {confirmClose ? (
             <div className="modal-backdrop delete-confirm-backdrop">
               <div className="delete-confirm-dialog">
